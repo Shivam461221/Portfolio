@@ -14,7 +14,7 @@ export default function Navbar() {
     function onScroll() {
       setScrolled(window.scrollY > 24);
     }
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, {passive: true});
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -42,11 +42,11 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <nav
-          className={`flex items-center justify-between rounded-2xl border transition-all duration-300 px-4 md:px-5 ${
-            scrolled
-              ? "bg-base-elevated/85 backdrop-blur-md border-base-line py-2.5 shadow-lg shadow-black/20"
-              : "bg-transparent border-transparent py-2"
-          }`}
+          className={`flex items-center justify-between rounded-2xl border transition-colors duration-300 px-4 md:px-5 ${
+  scrolled
+    ? "bg-base-elevated/95 md:bg-base-elevated/85 md:backdrop-blur-md border-base-line py-2.5 shadow-lg shadow-black/20"
+    : "bg-transparent border-transparent py-2"
+}`}
         >
           <a href="#home" className="font-display font-semibold text-ink text-lg tracking-tight">
             SL<span className="text-signal-cyan">.</span>dev

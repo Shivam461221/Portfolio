@@ -1,8 +1,8 @@
-:root {
+/*:root {
   --bg-dark: #070913;
   --ring-border: rgba(255, 255, 255, 0.15);
   
-  /* Radii for 5 concentric rings */
+  
   --radius-1: 90px;
   --radius-2: 150px;
   --radius-3: 210px;
@@ -30,13 +30,13 @@
   align-items: center;
 }
 
-/* Pause ONLY the active hovered ring & counter-rotation */
+
 .orbit-ring.is-paused,
 .tech-node-counter.is-paused {
   animation-play-state: paused !important;
 }
 
-/* Center Core */
+
 .center-core {
   width: 70px;
   height: 70px;
@@ -56,13 +56,13 @@
   object-fit: contain;
 }
 
-/* Concentric Orbit Rings */
+
 .orbit-ring {
   position: absolute;
   border: 1px dashed var(--ring-border);
   border-radius: 50%;
   animation: rotateClockwise linear infinite;
-  pointer-events: none; /* Allows pointer clicks/hovers to pass through to items below */
+  pointer-events: none; 
 }
 
 .ring-1 { width: calc(var(--radius-1) * 2); height: calc(var(--radius-1) * 2); }
@@ -71,7 +71,7 @@
 .ring-4 { width: calc(var(--radius-4) * 2); height: calc(var(--radius-4) * 2); }
 .ring-5 { width: calc(var(--radius-5) * 2); height: calc(var(--radius-5) * 2); }
 
-/* Orbit Node Positioners */
+
 .tech-node-positioner {
   position: absolute;
   top: 50%;
@@ -89,7 +89,7 @@
   animation: rotateCounterClockwise linear infinite;
 }
 
-/* Technology Icon Buttons */
+
 .tech-btn {
   width: 50px;
   height: 50px;
@@ -119,7 +119,7 @@
   z-index: 50;
 }
 
-/* Floating Tooltip Modal */
+
 .tech-floating-modal {
   position: absolute;
   transform: translateX(-50%);
@@ -157,7 +157,6 @@
   line-height: 1.35;
 }
 
-/* Rotations */
 @keyframes rotateClockwise {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -176,5 +175,496 @@
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0) scale(1);
+  }
+} */
+
+:root {
+  --bg-dark: #070913;
+  --ring-border: rgba(255, 255, 255, 0.15);
+
+  /* Radii for 5 concentric rings */
+  --radius-1: 90px;
+  --radius-2: 150px;
+  --radius-3: 210px;
+  --radius-4: 270px;
+  --radius-5: 330px;
+}
+
+/* =========================================================
+   DESKTOP TECH ORBIT
+   ========================================================= */
+
+.tech-section {
+  width: 100%;
+  min-height: 850px;
+
+  background-color: var(--bg-dark);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.orbit-container {
+  width: 750px;
+  height: 750px;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================================================
+   ORBIT PAUSE STATE
+   ========================================================= */
+
+.orbit-ring.is-paused,
+.tech-node-counter.is-paused {
+  animation-play-state: paused !important;
+}
+
+/* =========================================================
+   CENTER CORE
+   ========================================================= */
+
+.center-core {
+  width: 70px;
+  height: 70px;
+
+  background: #0f172a;
+
+  border: 2px solid #00d2ff;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
+
+  box-shadow:
+    0 0 25px rgba(0, 210, 255, 0.5);
+}
+
+/* =========================================================
+   ORBIT RINGS
+   ========================================================= */
+
+.orbit-ring {
+  position: absolute;
+
+  border: 1px dashed var(--ring-border);
+  border-radius: 50%;
+
+  animation-name: rotateClockwise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  pointer-events: none;
+
+  /*
+   * Helps the browser optimize transform animation.
+   */
+  will-change: transform;
+}
+
+.ring-1 {
+  width: calc(var(--radius-1) * 2);
+  height: calc(var(--radius-1) * 2);
+}
+
+.ring-2 {
+  width: calc(var(--radius-2) * 2);
+  height: calc(var(--radius-2) * 2);
+}
+
+.ring-3 {
+  width: calc(var(--radius-3) * 2);
+  height: calc(var(--radius-3) * 2);
+}
+
+.ring-4 {
+  width: calc(var(--radius-4) * 2);
+  height: calc(var(--radius-4) * 2);
+}
+
+.ring-5 {
+  width: calc(var(--radius-5) * 2);
+  height: calc(var(--radius-5) * 2);
+}
+
+/* =========================================================
+   TECH NODE POSITION
+   ========================================================= */
+
+.tech-node-positioner {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  margin-top: -25px;
+  margin-left: -25px;
+
+  width: 50px;
+  height: 50px;
+
+  pointer-events: auto;
+}
+
+/* =========================================================
+   COUNTER ROTATION
+   ========================================================= */
+
+.tech-node-counter {
+  width: 100%;
+  height: 100%;
+
+  animation-name: rotateCounterClockwise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  will-change: transform;
+}
+
+/* =========================================================
+   TECH BUTTON
+   ========================================================= */
+
+.tech-btn {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  border: 2px solid #cbd5e1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  padding: 8px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tech-btn img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+}
+
+/* Hover / active */
+.tech-btn:hover,
+.tech-btn.active {
+  transform: scale(1.35);
+
+  border-color: #00d2ff;
+
+  box-shadow:
+    0 0 20px rgba(0, 210, 255, 0.8);
+
+  z-index: 50;
+}
+
+/* =========================================================
+   FLOATING MODAL
+   ========================================================= */
+
+.tech-floating-modal {
+  position: absolute;
+
+  transform: translateX(-50%);
+
+  width: 220px;
+
+  background: #0f172a;
+
+  border: 1px solid #1e293b;
+  border-top: 3px solid #00d2ff;
+
+  border-radius: 8px;
+
+  padding: 12px 14px;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.7);
+
+  z-index: 100;
+
+  pointer-events: none;
+
+  animation:
+    modalPop 0.2s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-tag {
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  color: #00d2ff;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.05em;
+}
+
+.modal-title {
+  margin: 3px 0 6px;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+}
+
+.modal-desc {
+  font-size: 0.78rem;
+
+  color: #94a3b8;
+
+  margin: 0;
+
+  line-height: 1.35;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes rotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(10px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* =========================================================
+   MOBILE TECH GRID
+   ========================================================= */
+
+.tech-mobile-section {
+  width: 100%;
+
+  padding: 50px 20px;
+
+  background-color: var(--bg-dark);
+}
+
+.tech-mobile-header {
+  max-width: 600px;
+
+  margin: 0 auto 28px;
+
+  text-align: center;
+}
+
+.tech-mobile-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  font-family: monospace;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  color: #00d2ff;
+}
+
+.tech-mobile-title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 1.5rem;
+
+  font-weight: 700;
+}
+
+.tech-mobile-subtitle {
+  margin: 10px auto 0;
+
+  max-width: 450px;
+
+  color: #94a3b8;
+
+  font-size: 0.85rem;
+
+  line-height: 1.5;
+}
+
+.tech-mobile-grid {
+  width: 100%;
+
+  max-width: 520px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.tech-mobile-card {
+  min-height: 88px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 12px 8px;
+
+  background: #0f172a;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 14px;
+
+  color: #ffffff;
+
+  font-size: 0.72rem;
+
+  text-align: center;
+
+  /*
+   * No animation.
+   * No box-shadow.
+   * No backdrop-filter.
+   */
+}
+
+.tech-mobile-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-mobile-card img {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .tech-mobile-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .tech-mobile-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+  }
+
+  .tech-mobile-card {
+    min-height: 82px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+/*
+ * Keep the orbit for tablets and larger screens.
+ * The mobile fallback is used at <= 767px.
+ */
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .orbit-container {
+    transform: scale(0.85);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .tech-node-counter,
+  .tech-floating-modal {
+    animation: none !important;
+  }
+
+  .tech-btn {
+    transition: none;
   }
 }
