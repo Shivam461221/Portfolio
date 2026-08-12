@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html, body {
+  background-color: #080B14;
+  color: #E9ECF6;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+::selection {
+  background: #00E5C7;
+  color: #080B14;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #080B14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E2740;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5C7;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #00E5C7 0%, #7C6FFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, #1E274033 1px, transparent 1px),
+    linear-gradient(to bottom, #1E274033 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+:focus-visible {
+  outline: 2px solid #00E5C7;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.input {
+  width: 100%;
+  background: #0E1424;
+  border: 1px solid #1E2740;
+  border-radius: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.875rem;
+  color: #E9ECF6;
+  transition: border-color 0.2s ease;
+}
+.input::placeholder {
+  color: #5B6480;
+}
+.input:focus {
+  outline: none;
+  border-color: #00E5C7;
+}
+
+/* --- Tech orbit animation --- */
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit-spin-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+@keyframes orbit-core-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,199,0.35); }
+  50% { box-shadow: 0 0 0 18px rgba(0,229,199,0); }
+}
+
+.orbit-ring {
+  animation-name: orbit-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.orbit-ring.reverse {
+  animation-name: orbit-spin-reverse;
+}
+.orbit-node-counter {
+  animation-name: orbit-spin-reverse;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.orbit-ring.reverse .orbit-node-counter {
+  animation-name: orbit-spin;
+}
+
+.orbit-wrap:hover .orbit-ring,
+.orbit-wrap:hover .orbit-node-counter {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .orbit-node-counter {
+    animation: none !important;
+  }
+}

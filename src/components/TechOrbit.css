@@ -1,0 +1,180 @@
+:root {
+  --bg-dark: #070913;
+  --ring-border: rgba(255, 255, 255, 0.15);
+  
+  /* Radii for 5 concentric rings */
+  --radius-1: 90px;
+  --radius-2: 150px;
+  --radius-3: 210px;
+  --radius-4: 270px;
+  --radius-5: 330px;
+}
+
+.tech-section {
+  width: 100%;
+  min-height: 850px;
+  background-color: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.orbit-container {
+  width: 750px;
+  height: 750px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pause ONLY the active hovered ring & counter-rotation */
+.orbit-ring.is-paused,
+.tech-node-counter.is-paused {
+  animation-play-state: paused !important;
+}
+
+/* Center Core */
+.center-core {
+  width: 70px;
+  height: 70px;
+  background: #0f172a;
+  border: 2px solid #00d2ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+}
+
+.core-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+/* Concentric Orbit Rings */
+.orbit-ring {
+  position: absolute;
+  border: 1px dashed var(--ring-border);
+  border-radius: 50%;
+  animation: rotateClockwise linear infinite;
+  pointer-events: none; /* Allows pointer clicks/hovers to pass through to items below */
+}
+
+.ring-1 { width: calc(var(--radius-1) * 2); height: calc(var(--radius-1) * 2); }
+.ring-2 { width: calc(var(--radius-2) * 2); height: calc(var(--radius-2) * 2); }
+.ring-3 { width: calc(var(--radius-3) * 2); height: calc(var(--radius-3) * 2); }
+.ring-4 { width: calc(var(--radius-4) * 2); height: calc(var(--radius-4) * 2); }
+.ring-5 { width: calc(var(--radius-5) * 2); height: calc(var(--radius-5) * 2); }
+
+/* Orbit Node Positioners */
+.tech-node-positioner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+  width: 50px;
+  height: 50px;
+  pointer-events: auto;
+}
+
+.tech-node-counter {
+  width: 100%;
+  height: 100%;
+  animation: rotateCounterClockwise linear infinite;
+}
+
+/* Technology Icon Buttons */
+.tech-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tech-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.tech-btn:hover,
+.tech-btn.active {
+  transform: scale(1.35);
+  border-color: #00d2ff;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
+  z-index: 50;
+}
+
+/* Floating Tooltip Modal */
+.tech-floating-modal {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 220px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-top: 3px solid #00d2ff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  pointer-events: none;
+  animation: modalPop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #00d2ff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-title {
+  margin: 3px 0 6px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.modal-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Rotations */
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
