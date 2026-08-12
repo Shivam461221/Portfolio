@@ -93,36 +93,7 @@
 //   );
 // }
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Download } from "lucide-react";
-import { personal } from "../../data/personal";
-import Button from "../ui/Button";
-import TechConstellation from "../TechConstellation";
 
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-    const handleChange = (event) => {
-      setIsDesktop(event.matches);
-    };
-
-    // Initial value
-    setIsDesktop(mediaQuery.matches);
-
-    // Listen for resize/orientation changes
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-    };
-  }, []);
-
-  return isDesktop;
-}
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
