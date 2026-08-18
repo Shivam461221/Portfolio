@@ -15,7 +15,7 @@ export const personal = {
   email: "shivamlowanshi28@gmail.com",
   phone: "+91 9754947747",
   whatsappNumber: "919754947747",
-  resumeUrl: "public/ShivamResume.pdf",
+  resumeUrl: "/ShivamResume.pdf",
   social: {
     github: "https://github.com/Shivam461221",
     linkedin: "https://linkedin.com/in/shivam-lowanshi",
